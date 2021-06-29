@@ -1,0 +1,31 @@
+body {
+  position: relative;
+  background-color: black;
+}
+#header {
+  position: absolute;
+  font-weight: bold;
+  font-size: 10vmax;
+  color: aqua;
+  left: 30vw;
+  top: 10vh;
+}
+#time {
+  position: relative;
+  color: yellow;
+  font-size: 8vmax;
+  top: 30vh;
+  left: 20%;
+}
+
+#seconds,
+#semicolon1,
+#semicolon2,
+#miliseconds,
+#minutes {
+  color: white;
+  font-size: 8vmax;
+  position: relative;
+  top: 30vh;
+  left: 25%;
+}
