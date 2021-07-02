@@ -29,3 +29,16 @@ body {
   top: 30vh;
   left: 25%;
 }
+#go {
+  color: white;
+  display: none;
+  position: absolute;
+  font-size: 5vmax;
+  left: 45vw;
+  top: 50vh;
+}
+
+#semicolon1,
+#minutes {
+  display: none;
+}
