@@ -8,16 +8,26 @@
     <title>JD Timer</title>
   </head>
   <body>
-    <span id="header">JD Timer</span>
-    <span id="time">Timer:</span>
-    <span id="minutes">00</span>
-    <span id="semicolon1">:</span>
-    <span id="seconds">00</span>
-    <span id="semicolon2">.</span>
-    <span id="milliseconds">00</span>
-    <span id="go">GO!!!</span>
-    <span id="meanOfFive">mo5: </span>
-    <span id="averageOfFive">ao5: </span>
+    <div id="header">JD Timer</div>
+    <div id="time">Timer:</div>
+    <div id="timer" style="text-align: center">
+      <span id="minutes">00</span>
+      <span id="semicolon1">:</span>
+      <span id="seconds">00</span>
+      <span id="semicolon2">.</span>
+      <span id="milliseconds">00</span>
+    </div>
+    <div id="go">GO!!!</div>
+    <div id="meanOfFive">mo5:</div>
+    <div id="averageOfFive">ao5:</div>
+
+    <div id="function-area">
+      <span class="item" id="title">Function</span>
+      <span class="item" id="function">mo5: </span>
+      <input class="item" type="button" value="hide" id="meanOfFiveButton" />
+      <span class="item" id="function">ao5: </span>
+      <input class="item" type="button" value="hide" id="averageOfFiveButton" />
+    </div>
   </body>
   <footer>
     <script src="script.js"></script>
