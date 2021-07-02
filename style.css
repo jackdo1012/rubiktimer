@@ -21,7 +21,7 @@ body {
 #seconds,
 #semicolon1,
 #semicolon2,
-#miliseconds,
+#milliseconds,
 #minutes {
   color: white;
   font-size: 8vmax;
@@ -35,10 +35,25 @@ body {
   position: absolute;
   font-size: 5vmax;
   left: 45vw;
-  top: 50vh;
+  top: 80vh;
 }
 
 #semicolon1,
 #minutes {
   display: none;
+}
+
+#meanOfFive {
+  color: orange;
+  font-size: 8vmax;
+  position: absolute;
+  top: 40vh;
+  left: 42vw;
+}
+#averageOfFive {
+  color: orange;
+  font-size: 8vmax;
+  position: absolute;
+  left: 42vw;
+  top: 50vh;
 }
