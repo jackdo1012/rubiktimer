@@ -14,22 +14,22 @@ ao5Button.addEventListener("click", ao5Hide)
 mo5Button.addEventListener("click", mo5Hide)
 
 function ao5Hide() {
-  if (ao5Button.value == "hide") {
+  if (ao5Button.value == "on") {
     ao5.style.display = "none"
-    ao5Button.value = "show"
+    ao5Button.value = "off"
   } else {
     ao5.style.display = "inline-block"
-    ao5Button.value = "hide"
+    ao5Button.value = "on"
   }
 }
 
 function mo5Hide() {
-  if (mo5Button.value == "hide") {
+  if (mo5Button.value == "on") {
     mo5.style.display = "none"
-    mo5Button.value = "show"
+    mo5Button.value = "off"
   } else {
     mo5.style.display = "inline-block"
-    mo5Button.value = "hide"
+    mo5Button.value = "on"
   }
 }
 
@@ -69,7 +69,7 @@ document.body.onkeyup = function (e) {
     a++
     if (a % 2 == 1) {
       window.reset = false
-      myFunc = setInterval(setTime, 10)
+      myFunc = setInterval(setTime, -10) // run timer
       totalSecond = 0
     } else if (a % 2 == 0) {
       window.reset = true
@@ -93,7 +93,16 @@ document.body.onkeypress = function (e) {
         for (var i = 0; i < num; i++) {
           sum += solves[i]
         }
-        return (sum / num).toFixed(2)
+        var ans = sum / num
+        if (ans >= 60) {
+          if (ans % 60 < 10) {
+            return pad(Math.floor(ans / 60)) + ":0" + (ans % 60).toFixed(2)
+          } else {
+            return pad(Math.floor(ans / 60)) + ":" + (ans % 60).toFixed(2)
+          }
+        } else {
+          return ans.toFixed(2)
+        }
       } else {
         return ""
       }
@@ -111,7 +120,16 @@ document.body.onkeypress = function (e) {
         for (var i = 0; i < solvesAvg.length; i++) {
           sum += solvesAvg[i]
         }
-        return (sum / (num - 2)).toFixed(2)
+        var ans = sum / (num - 2)
+        if (ans >= 60) {
+          if (ans % 60 < 10) {
+            return pad(Math.floor(ans / 60)) + ":0" + (ans % 60).toFixed(2)
+          } else {
+            return pad(Math.floor(ans / 60)) + ":" + (ans % 60).toFixed(2)
+          }
+        } else {
+          return ans.toFixed(2)
+        }
       } else {
         return ""
       }
