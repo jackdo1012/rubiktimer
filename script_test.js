@@ -95,7 +95,7 @@ document.body.onkeypress = function (e) {
         }
         return (sum / num).toFixed(2)
       } else {
-        return ""
+        return 0
       }
     }
 
@@ -113,7 +113,7 @@ document.body.onkeypress = function (e) {
         }
         return (sum / (num - 2)).toFixed(2)
       } else {
-        return ""
+        return 0
       }
     }
     mo5.innerHTML = "mo5: " + meanOf(5)
