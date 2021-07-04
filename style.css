@@ -61,13 +61,30 @@ body {
 }
 
 #plusTwo {
-  color: red;
+  color: cyan;
   display: none;
+  background-color: transparent;
+  border: 0px solid transparent;
+  font-size: 2vmax;
+  grid-column: 2;
+  grid-row: 6;
 }
 
 #DNF {
-  color: blue;
+  color: cyan;
   display: none;
+  background-color: transparent;
+  border: 0px solid transparent;
+  font-size: 2vmax;
+  grid-column: 3;
+  grid-row: 6;
+}
+
+#plusTwo:hover {
+  cursor: pointer;
+}
+#DNF:hover {
+  cursor: pointer;
 }
 
 #function-area {

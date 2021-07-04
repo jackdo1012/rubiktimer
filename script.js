@@ -73,16 +73,14 @@ document.body.onkeyup = function (e) {
       window.reset = false
       plus2.style.display = "none"
       DNF.style.display = "none"
-      myFunc = setInterval(setTime, 0.00000000000000001)
+      myFunc = setInterval(setTime, 10)
       totalSecond = 0
-      window.plus2Available = false
-      window.dnfAvailable = false
+      window.penAvailable = false
     } else if (a % 2 == 0) {
       window.reset = true
       clearInterval(myFunc)
       totalSecond = 0
-      window.plus2Available = true
-      window.dnfAvailable = true
+      window.penAvailable = true
     }
   }
 }
@@ -99,17 +97,28 @@ document.body.onkeypress = function (e) {
       (totalSecond % 100) / 100
     solves.unshift(timeOfSolve)
     plus2.addEventListener("click", function () {
-      if (window.plus2Available) {
-        window.plus2Available = false
-        solves[0] = timeOfSolve += 2
+      if (window.penAvailable) {
+        window.penAvailable = false
+        solves[0] = timeOfSolve += 2.0
+        if (Math.floor(timeOfSolve) < 10) {
+          seconds.innerHTML = "0" + Math.floor(timeOfSolve)
+        } else {
+          seconds.innerHTML = Math.floor(timeOfSolve)
+        }
         mo5.innerHTML = "mo5: " + meanOf(5)
         ao5.innerHTML = "ao5: " + averageOf(5)
       }
     })
     DNF.addEventListener("click", function () {
-      if (window.dnfAvailable) {
-        window.dnfAvailable = false
+      if (window.penAvailable) {
+        window.penAvailable = false
         solves[0] = "DNF"
+        millisecond.style.display = "none"
+        second.style.display = "none"
+        minutes.style.display = "none"
+        document.getElementById("semicolon1").style.display = "inline-block"
+        document.getElementById("semicolon1").innerHTML = "DNF"
+        document.getElementById("semicolon2").style.display = "none"
         mo5.innerHTML = "mo5: " + meanOf(5)
         ao5.innerHTML = "ao5: " + averageOf(5)
       }
@@ -205,5 +214,17 @@ document.body.onkeydown = function (e) {
     millisecond.innerHTML = "00"
     second.innerHTML = "00"
     minutes.innerHTML = "00"
+  }
+}
+
+function dnfhide() {
+  if (window.penAvailable) {
+    DNF.style.display = "none"
+  }
+}
+
+function plus2hide() {
+  if (window.penAvailable) {
+    plus2.style.display = "none"
   }
 }
