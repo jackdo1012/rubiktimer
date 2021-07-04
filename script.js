@@ -73,7 +73,7 @@ document.body.onkeyup = function (e) {
       window.reset = false
       plus2.style.display = "none"
       DNF.style.display = "none"
-      myFunc = setInterval(setTime, 10)
+      myFunc = setInterval(setTime, 0.00000000000000001)
       totalSecond = 0
       window.plus2Available = false
       window.dnfAvailable = false
@@ -125,7 +125,14 @@ document.body.onkeypress = function (e) {
             sum += solves[i]
           }
         }
-        return (sum / num).toFixed(2)
+        var ans = (sum / num).toFixed(2)
+        if (ans < 60) {
+          return ans
+        } else if (ans < 70) {
+          return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
+        } else {
+          return Math.floor(ans / 60) + ":" + (ans % 60).toFixed(2)
+        }
       } else {
         return ""
       }
@@ -151,7 +158,14 @@ document.body.onkeypress = function (e) {
           for (var i = 0; i < solvesAvg.length; i++) {
             sum += solvesAvg[i]
           }
-          return (sum / (num - 2)).toFixed(2)
+          var ans = (sum / (num - 2)).toFixed(2)
+          if (ans < 60) {
+            return ans
+          } else if (ans < 70) {
+            return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
+          } else {
+            return Math.floor(ans / 60) + ":" + (ans % 60).toFixed(2)
+          }
         } else if (count == 1) {
           solvesAvg.sort(function (a, b) {
             return a - b
@@ -160,7 +174,14 @@ document.body.onkeypress = function (e) {
           for (var i = 0; i < solvesAvg.length; i++) {
             sum += solvesAvg[i]
           }
-          return (sum / (num - 2)).toFixed(2)
+          var ans = (sum / (num - 2)).toFixed(2)
+          if (ans < 60) {
+            return ans
+          } else if (ans < 70) {
+            return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
+          } else {
+            return Math.floor(ans / 60) + ":" + (ans % 60).toFixed(2)
+          }
         } else {
           return "DNF"
         }
