@@ -5,9 +5,11 @@ var mo5 = document.getElementById("meanOfFive")
 var ao5 = document.getElementById("averageOfFive")
 var ao5Button = document.getElementById("averageOfFiveButton")
 var mo5Button = document.getElementById("meanOfFiveButton")
+var plus2 = document.getElementById("plusTwo")
+var DNF = document.getElementById("DNF")
 var totalSecond = 0
 var a = 0
-window.reset = true
+reset = true
 var solves = []
 
 ao5Button.addEventListener("click", ao5Hide)
@@ -69,11 +71,18 @@ document.body.onkeyup = function (e) {
     a++
     if (a % 2 == 1) {
       window.reset = false
-      myFunc = setInterval(setTime, -10) // run timer
+      plus2.style.display = "none"
+      DNF.style.display = "none"
+      myFunc = setInterval(setTime, 10)
       totalSecond = 0
+      window.plus2Available = false
+      window.dnfAvailable = false
     } else if (a % 2 == 0) {
       window.reset = true
+      clearInterval(myFunc)
       totalSecond = 0
+      window.plus2Available = true
+      window.dnfAvailable = true
     }
   }
 }
@@ -81,28 +90,42 @@ document.body.onkeyup = function (e) {
 document.body.onkeypress = function (e) {
   // when space bar is pressed and timer started already (press to stop)
   if (e.keyCode == 32 && window.reset == false) {
+    plus2.style.display = "inline-block"
+    DNF.style.display = "inline-block"
     clearInterval(myFunc)
     timeOfSolve =
       parseInt(totalSecond / 6000) * 60 +
       (parseInt(totalSecond / 100) % 60) +
       (totalSecond % 100) / 100
     solves.unshift(timeOfSolve)
+    plus2.addEventListener("click", function () {
+      if (window.plus2Available) {
+        window.plus2Available = false
+        solves[0] = timeOfSolve += 2
+        mo5.innerHTML = "mo5: " + meanOf(5)
+        ao5.innerHTML = "ao5: " + averageOf(5)
+      }
+    })
+    DNF.addEventListener("click", function () {
+      if (window.dnfAvailable) {
+        window.dnfAvailable = false
+        solves[0] = "DNF"
+        mo5.innerHTML = "mo5: " + meanOf(5)
+        ao5.innerHTML = "ao5: " + averageOf(5)
+      }
+    })
+
     function meanOf(num) {
       if (solves.length >= num) {
         var sum = 0
         for (var i = 0; i < num; i++) {
-          sum += solves[i]
-        }
-        var ans = sum / num
-        if (ans >= 60) {
-          if (ans % 60 < 10) {
-            return pad(Math.floor(ans / 60)) + ":0" + (ans % 60).toFixed(2)
+          if (solves[i] == "DNF") {
+            return "DNF"
           } else {
-            return pad(Math.floor(ans / 60)) + ":" + (ans % 60).toFixed(2)
+            sum += solves[i]
           }
-        } else {
-          return ans.toFixed(2)
         }
+        return (sum / num).toFixed(2)
       } else {
         return ""
       }
@@ -111,24 +134,35 @@ document.body.onkeypress = function (e) {
     function averageOf(num) {
       if (solves.length >= num) {
         var sum = 0
+        var count = 0
         solvesAvg = solves.slice(0, num)
-        solvesAvg.sort(function (a, b) {
-          return a - b
-        })
-        solvesAvg.pop()
-        solvesAvg.shift()
-        for (var i = 0; i < solvesAvg.length; i++) {
-          sum += solvesAvg[i]
-        }
-        var ans = sum / (num - 2)
-        if (ans >= 60) {
-          if (ans % 60 < 10) {
-            return pad(Math.floor(ans / 60)) + ":0" + (ans % 60).toFixed(2)
-          } else {
-            return pad(Math.floor(ans / 60)) + ":" + (ans % 60).toFixed(2)
+        for (var i = 0; i < solves.length; i++) {
+          if (solvesAvg[i] == "DNF") {
+            count++
+            solvesAvg.splice(i, 1)
           }
+        }
+        if (count == 0) {
+          solvesAvg.sort(function (a, b) {
+            return a - b
+          })
+          solvesAvg.pop()
+          solvesAvg.shift()
+          for (var i = 0; i < solvesAvg.length; i++) {
+            sum += solvesAvg[i]
+          }
+          return (sum / (num - 2)).toFixed(2)
+        } else if (count == 1) {
+          solvesAvg.sort(function (a, b) {
+            return a - b
+          })
+          solvesAvg.splice(0, 1)
+          for (var i = 0; i < solvesAvg.length; i++) {
+            sum += solvesAvg[i]
+          }
+          return (sum / (num - 2)).toFixed(2)
         } else {
-          return ans.toFixed(2)
+          return "DNF"
         }
       } else {
         return ""

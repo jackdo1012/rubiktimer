@@ -5,31 +5,33 @@ var mo5 = document.getElementById("meanOfFive")
 var ao5 = document.getElementById("averageOfFive")
 var ao5Button = document.getElementById("averageOfFiveButton")
 var mo5Button = document.getElementById("meanOfFiveButton")
+var plus2 = document.getElementById("plusTwo")
+var DNF = document.getElementById("DNF")
 var totalSecond = 0
 var a = 0
-window.reset = true
+globalThis.reset = true
 var solves = []
 
 ao5Button.addEventListener("click", ao5Hide)
 mo5Button.addEventListener("click", mo5Hide)
 
 function ao5Hide() {
-  if (ao5Button.value == "hide") {
+  if (ao5Button.value == "on") {
     ao5.style.display = "none"
-    ao5Button.value = "show"
+    ao5Button.value = "off"
   } else {
     ao5.style.display = "inline-block"
-    ao5Button.value = "hide"
+    ao5Button.value = "on"
   }
 }
 
 function mo5Hide() {
-  if (mo5Button.value == "hide") {
+  if (mo5Button.value == "on") {
     mo5.style.display = "none"
-    mo5Button.value = "show"
+    mo5Button.value = "off"
   } else {
     mo5.style.display = "inline-block"
-    mo5Button.value = "hide"
+    mo5Button.value = "on"
   }
 }
 
@@ -68,11 +70,12 @@ document.body.onkeyup = function (e) {
   if (e.keyCode == 32) {
     a++
     if (a % 2 == 1) {
-      window.reset = false
+      reset = false
       myFunc = setInterval(setTime, 10)
       totalSecond = 0
     } else if (a % 2 == 0) {
-      window.reset = true
+      reset = true
+      clearInterval(myFunc)
       totalSecond = 0
     }
   }
@@ -80,7 +83,9 @@ document.body.onkeyup = function (e) {
 
 document.body.onkeypress = function (e) {
   // when space bar is pressed and timer started already (press to stop)
-  if (e.keyCode == 32 && window.reset == false) {
+  if (e.keyCode == 32 && reset == false) {
+    plus2.style.display = "inline-block"
+    DNF.style.display = "inline-block"
     clearInterval(myFunc)
     timeOfSolve =
       parseInt(totalSecond / 6000) * 60 +
@@ -95,7 +100,7 @@ document.body.onkeypress = function (e) {
         }
         return (sum / num).toFixed(2)
       } else {
-        return 0
+        return ""
       }
     }
 
@@ -113,7 +118,7 @@ document.body.onkeypress = function (e) {
         }
         return (sum / (num - 2)).toFixed(2)
       } else {
-        return 0
+        return ""
       }
     }
     mo5.innerHTML = "mo5: " + meanOf(5)
@@ -121,7 +126,7 @@ document.body.onkeypress = function (e) {
   }
 }
 document.body.onkeydown = function (e) {
-  if (e.keyCode == 32 && window.reset == true) {
+  if (e.keyCode == 32 && reset == true) {
     // when key space bar is hold and timer isn't start
     second.style.color = "rgb(153, 255, 102)"
     millisecond.style.color = "rgb(153, 255, 102)"
