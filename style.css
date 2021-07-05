@@ -61,7 +61,7 @@ body {
 }
 
 #plusTwo {
-  color: cyan;
+  color: yellow;
   display: none;
   background-color: transparent;
   border: 0px solid transparent;
@@ -71,7 +71,7 @@ body {
 }
 
 #DNF {
-  color: cyan;
+  color: yellow;
   display: none;
   background-color: transparent;
   border: 0px solid transparent;
