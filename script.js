@@ -9,7 +9,7 @@ var plus2 = document.getElementById("plusTwo")
 var DNF = document.getElementById("DNF")
 var totalSecond = 0
 var a = 0
-reset = true
+var reset = true
 var solves = []
 
 ao5Button.addEventListener("click", ao5Hide)
@@ -49,10 +49,15 @@ function setTime() {
   minutes.innerHTML = pad(parseInt(totalSecond / 6000))
   if (parseInt(totalSecond / 6000) < 1) {
     document.getElementById("semicolon1").style.display = "none"
+    document.getElementById("semicolon2").style.display = "inline-block"
     minutes.style.display = "none"
+    seconds.style.display = "inline-block"
+    milliseconds.style.display = "inline-block"
   } else {
     document.getElementById("semicolon1").style.display = "inline-block"
     minutes.style.display = "inline-block"
+    seconds.style.display = "inline-block"
+    milliseconds.style.display = "inline-block"
   }
 }
 function pad(value) {
