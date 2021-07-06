@@ -15,26 +15,6 @@ var solves = []
 ao5Button.addEventListener("click", ao5Hide)
 mo5Button.addEventListener("click", mo5Hide)
 
-function ao5Hide() {
-  if (ao5Button.value == "on") {
-    ao5.style.display = "none"
-    ao5Button.value = "off"
-  } else {
-    ao5.style.display = "inline-block"
-    ao5Button.value = "on"
-  }
-}
-
-function mo5Hide() {
-  if (mo5Button.value == "on") {
-    mo5.style.display = "none"
-    mo5Button.value = "off"
-  } else {
-    mo5.style.display = "inline-block"
-    mo5Button.value = "on"
-  }
-}
-
 function setTime() {
   // this function make the time display
   second.style.color = "white"
@@ -78,7 +58,7 @@ document.body.onkeyup = function (e) {
       window.reset = false
       plus2.style.display = "none"
       DNF.style.display = "none"
-      myFunc = setInterval(setTime, 10)
+      myFunc = setInterval(setTime, 0)
       totalSecond = 0
       window.penAvailable = false
     } else if (a % 2 == 0) {
@@ -233,3 +213,24 @@ function plus2hide() {
     plus2.style.display = "none"
   }
 }
+
+function ao5Hide() {
+  if (ao5Button.value == "on") {
+    ao5.style.visibility = "hidden"
+    ao5Button.value = "off"
+  } else {
+    ao5.style.visibility = "visible"
+    ao5Button.value = "on"
+  }
+}
+
+function mo5Hide() {
+  if (mo5Button.value == "on") {
+    mo5.style.visibility = "hidden"
+    mo5Button.value = "off"
+  } else {
+    mo5.style.visibility = "visible"
+    mo5Button.value = "on"
+  }
+}
+git

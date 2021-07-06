@@ -1,6 +1,6 @@
 body {
   display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
+  grid-template-columns: 25vmax 25vmax 25vmax 25vmax;
   background-color: black;
 }
 #header {
@@ -20,6 +20,7 @@ body {
 }
 
 #timer {
+  width: 25vmax;
   justify-self: left;
   grid-row: 3;
   grid-column: 3 / 5;
@@ -30,6 +31,7 @@ body {
 #semicolon2,
 #milliseconds,
 #minutes {
+  grid-column: 3;
   color: white;
   font-size: 8vmax;
 }
