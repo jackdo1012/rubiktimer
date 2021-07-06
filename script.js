@@ -14,19 +14,19 @@ var reset = true
 var solves = []
 var run = false
 
-pen.style.display = "none"
+pen.disabled = true
 ao5Button.addEventListener("click", ao5Hide)
 mo5Button.addEventListener("click", mo5Hide)
+
 pen.addEventListener("click", function () {
-  if (window.penAvailable) {
-    a++
-    if (a % 2 == 1) {
-      DNF.style.display = "inline-block"
-      plus2.style.display = "inline-block"
-    } else {
-      DNF.style.display = "none"
-      plus2.style.display = "none"
-    }
+  var b = 0
+  b++
+  if (b % 2 == 1) {
+    DNF.style.display = "inline-block"
+    plus2.style.display = "inline-block"
+  } else {
+    DNF.style.display = "none"
+    plus2.style.display = "none"
   }
 })
 
@@ -80,8 +80,6 @@ document.body.onkeyup = function (e) {
       window.reset = true
       totalSecond = 0
       window.penAvailable = true
-      pen.style.display = "inline-block"
-      pen.checked = false
     }
   }
 }
@@ -200,10 +198,13 @@ document.body.onkeypress = function (e) {
     })
     mo5.innerHTML = "mo5: " + meanOf(5)
     ao5.innerHTML = "ao5: " + averageOf(5)
+    pen.disabled = false
   }
 }
 
 document.body.onkeydown = function (e) {
+  pen.checked = false
+  pen.disabled = true
   if (e.keyCode == 32 && window.reset == true) {
     // when key space bar is hold and timer isn't start
     second.style.color = "rgb(153, 255, 102)"
@@ -215,9 +216,8 @@ document.body.onkeydown = function (e) {
     millisecond.innerHTML = "00"
     second.innerHTML = "00"
     minutes.innerHTML = "00"
-    pen.style.display = "none"
-    DNF.style.display = "none"
-    plus2.style.display = "none"
+    dnfhide()
+    plus2hide()
   }
 }
 

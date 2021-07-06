@@ -119,12 +119,17 @@ body {
   min-height: fit-content;
 }
 #function-area input {
+  border: 0px;
   grid-column: 2;
   border-radius: 10px;
   font-size: 2vmax;
   background-color: black;
   align-self: center;
   justify-self: center;
+}
+#function-area input:hover {
+  cursor: pointer;
+  background-color: #636363;
 }
 .item {
   background-color: black;
