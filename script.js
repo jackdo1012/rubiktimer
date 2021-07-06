@@ -7,13 +7,28 @@ var ao5Button = document.getElementById("averageOfFiveButton")
 var mo5Button = document.getElementById("meanOfFiveButton")
 var plus2 = document.getElementById("plusTwo")
 var DNF = document.getElementById("DNF")
+var pen = document.getElementById("penalty")
 var totalSecond = 0
 var a = 0
 var reset = true
 var solves = []
+var run = false
 
+pen.style.display = "none"
 ao5Button.addEventListener("click", ao5Hide)
 mo5Button.addEventListener("click", mo5Hide)
+pen.addEventListener("click", function () {
+  if (window.penAvailable) {
+    a++
+    if (a % 2 == 1) {
+      DNF.style.display = "inline-block"
+      plus2.style.display = "inline-block"
+    } else {
+      DNF.style.display = "none"
+      plus2.style.display = "none"
+    }
+  }
+})
 
 function setTime() {
   // this function make the time display
@@ -58,56 +73,28 @@ document.body.onkeyup = function (e) {
       window.reset = false
       plus2.style.display = "none"
       DNF.style.display = "none"
-      myFunc = setInterval(setTime, 0)
+      myFunc = setInterval(setTime, 10)
       totalSecond = 0
-      window.penAvailable = false
+      window.run = true
     } else if (a % 2 == 0) {
       window.reset = true
-      clearInterval(myFunc)
       totalSecond = 0
       window.penAvailable = true
+      pen.style.display = "inline-block"
+      pen.checked = false
     }
   }
 }
-
 document.body.onkeypress = function (e) {
   // when space bar is pressed and timer started already (press to stop)
-  if (e.keyCode == 32 && window.reset == false) {
-    plus2.style.display = "inline-block"
-    DNF.style.display = "inline-block"
+  if (e.keyCode == 32 && window.reset == false && window.run == true) {
     clearInterval(myFunc)
     timeOfSolve =
       parseInt(totalSecond / 6000) * 60 +
       (parseInt(totalSecond / 100) % 60) +
       (totalSecond % 100) / 100
     solves.unshift(timeOfSolve)
-    plus2.addEventListener("click", function () {
-      if (window.penAvailable) {
-        window.penAvailable = false
-        solves[0] = timeOfSolve += 2.0
-        if (Math.floor(timeOfSolve) < 10) {
-          seconds.innerHTML = "0" + Math.floor(timeOfSolve)
-        } else {
-          seconds.innerHTML = Math.floor(timeOfSolve)
-        }
-        mo5.innerHTML = "mo5: " + meanOf(5)
-        ao5.innerHTML = "ao5: " + averageOf(5)
-      }
-    })
-    DNF.addEventListener("click", function () {
-      if (window.penAvailable) {
-        window.penAvailable = false
-        solves[0] = "DNF"
-        millisecond.style.display = "none"
-        second.style.display = "none"
-        minutes.style.display = "none"
-        document.getElementById("semicolon1").style.display = "inline-block"
-        document.getElementById("semicolon1").innerHTML = "DNF"
-        document.getElementById("semicolon2").style.display = "none"
-        mo5.innerHTML = "mo5: " + meanOf(5)
-        ao5.innerHTML = "ao5: " + averageOf(5)
-      }
-    })
+    window.run = false
 
     function meanOf(num) {
       if (solves.length >= num) {
@@ -121,6 +108,7 @@ document.body.onkeypress = function (e) {
         }
         var ans = (sum / num).toFixed(2)
         if (ans < 60) {
+          console.log(solves.length)
           return ans
         } else if (ans < 70) {
           return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
@@ -183,10 +171,38 @@ document.body.onkeypress = function (e) {
         return ""
       }
     }
+    plus2.addEventListener("click", function () {
+      if (window.penAvailable) {
+        window.penAvailable = false
+        solves[0] = timeOfSolve += 2.0
+        if (Math.floor(timeOfSolve) < 10) {
+          seconds.innerHTML = "0" + Math.floor(timeOfSolve)
+        } else {
+          seconds.innerHTML = Math.floor(timeOfSolve)
+        }
+        mo5.innerHTML = "mo5: " + meanOf(5)
+        ao5.innerHTML = "ao5: " + averageOf(5)
+      }
+    })
+    DNF.addEventListener("click", function () {
+      if (window.penAvailable) {
+        window.penAvailable = false
+        solves[0] = "DNF"
+        millisecond.style.display = "none"
+        second.style.display = "none"
+        minutes.style.display = "none"
+        document.getElementById("semicolon1").style.display = "inline-block"
+        document.getElementById("semicolon1").innerHTML = "DNF"
+        document.getElementById("semicolon2").style.display = "none"
+        mo5.innerHTML = "mo5: " + meanOf(5)
+        ao5.innerHTML = "ao5: " + averageOf(5)
+      }
+    })
     mo5.innerHTML = "mo5: " + meanOf(5)
     ao5.innerHTML = "ao5: " + averageOf(5)
   }
 }
+
 document.body.onkeydown = function (e) {
   if (e.keyCode == 32 && window.reset == true) {
     // when key space bar is hold and timer isn't start
@@ -199,6 +215,9 @@ document.body.onkeydown = function (e) {
     millisecond.innerHTML = "00"
     second.innerHTML = "00"
     minutes.innerHTML = "00"
+    pen.style.display = "none"
+    DNF.style.display = "none"
+    plus2.style.display = "none"
   }
 }
 
