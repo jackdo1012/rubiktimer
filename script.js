@@ -10,6 +10,7 @@ var DNF = document.getElementById("DNF")
 var pen = document.getElementById("penalty")
 var totalSecond = 0
 var a = 0
+var b = 0
 var reset = true
 var solves = []
 var run = false
@@ -19,7 +20,6 @@ ao5Button.addEventListener("click", ao5Hide)
 mo5Button.addEventListener("click", mo5Hide)
 
 pen.addEventListener("click", function () {
-  var b = 0
   b++
   if (b % 2 == 1) {
     DNF.style.display = "inline-block"
