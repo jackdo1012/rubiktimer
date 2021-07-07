@@ -12,7 +12,6 @@ var font = document.getElementById("font")
 var timer = document.getElementById("timer")
 var totalSecond = 0
 var a = 0
-var b = 0
 var reset = true
 var solves = []
 var run = false
@@ -23,17 +22,6 @@ averageOfFiveButton.disabled = true
 font.disabled = true
 ao5Button.addEventListener("click", ao5Hide)
 mo5Button.addEventListener("click", mo5Hide)
-
-pen.addEventListener("click", function () {
-  b++
-  if (b % 2 == 1) {
-    DNF.style.visibility = "visible"
-    plus2.style.visibility = "visible"
-  } else {
-    DNF.style.visibility = "hidden"
-    plus2.style.visibility = "hidden"
-  }
-})
 
 font.addEventListener(
   "change",
@@ -231,12 +219,23 @@ document.body.onkeypress = function (e) {
         solves[0] = "DNF"
         millisecond.style.display = "none"
         second.style.display = "none"
-        minutes.style.display = "none"
-        document.getElementById("semicolon1").style.display = "inline-block"
-        document.getElementById("semicolon1").innerHTML = "DNF"
+        minutes.style.display = "inline-block"
+        minutes.innerHTML = "DNF"
+        document.getElementById("semicolon1").style.display = "none"
         document.getElementById("semicolon2").style.display = "none"
         mo5.innerHTML = "mo5: " + meanOf(5)
         ao5.innerHTML = "ao5: " + averageOf(5)
+      }
+    })
+    var b = 0
+    pen.addEventListener("click", function () {
+      b++
+      if (b % 2 == 1) {
+        DNF.style.visibility = "visible"
+        plus2.style.visibility = "visible"
+      } else {
+        DNF.style.visibility = "hidden"
+        plus2.style.visibility = "hidden"
       }
     })
     mo5.innerHTML = "mo5: " + meanOf(5)
@@ -247,7 +246,6 @@ document.body.onkeypress = function (e) {
     font.disabled = false
   }
 }
-
 document.body.onkeydown = function (e) {
   pen.checked = false
   pen.disabled = true
@@ -256,20 +254,21 @@ document.body.onkeydown = function (e) {
   font.disabled = true
   if (e.keyCode == 32 && window.reset == true) {
     // when key space bar is hold and timer isn't start
+    DNF.style.visibility = "hidden"
+    plus2.style.visibility = "hidden"
     second.style.color = "rgb(153, 255, 102)"
     millisecond.style.color = "rgb(153, 255, 102)"
     minutes.style.color = "rgb(153, 255, 102)"
-    document.getElementById("semicolon1").style.color = "rgb(153, 255, 102)"
-    document.getElementById("semicolon2").style.color = "rgb(153, 255, 102)"
-    document.getElementById("go").style.visibility = "visible"
+    document.getElementById("semicolon2").style.display = "inline-block"
+    milliseconds.style.display = "inline-block"
     millisecond.innerHTML = "00"
     second.innerHTML = "00"
     minutes.innerHTML = "00"
-    dnfhide()
-    plus2hide()
+    document.getElementById("semicolon1").style.color = "rgb(153, 255, 102)"
+    document.getElementById("semicolon2").style.color = "rgb(153, 255, 102)"
+    document.getElementById("go").style.visibility = "visible"
   }
 }
-
 function dnfhide() {
   if (window.penAvailable) {
     DNF.style.visibility = "hidden"
