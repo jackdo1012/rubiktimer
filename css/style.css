@@ -74,6 +74,18 @@ body {
   grid-row: 5 / span 1;
 }
 
+#scramble-area {
+  background-color: gray;
+  width: 73vw;
+  height: 10vh;
+  border-radius: 10px;
+  font-size: 2rem;
+  text-align: center;
+  line-height: 10vh;
+  grid-column: 2 / span 3;
+  grid-row: 1;
+}
+
 #plusTwo {
   color: yellow;
   visibility: hidden;

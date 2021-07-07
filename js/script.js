@@ -10,11 +10,20 @@ var DNF = document.getElementById("DNF")
 var pen = document.getElementById("penalty")
 var font = document.getElementById("font")
 var timer = document.getElementById("timer")
+var threeByThreeScramble = "../scramble/threeByThreeScramble.txt"
 var totalSecond = 0
 var a = 0
 var reset = true
 var solves = []
 var run = false
+
+fetch(threeByThreeScramble)
+  .then((myFile) => myFile.text())
+  .then(function (myScramble) {
+    var myScrambleArray = myScramble.split("\n")
+    return (document.getElementById("scramble-area").innerHTML =
+      myScrambleArray[Math.floor(Math.random() * myScrambleArray.length)])
+  })
 
 pen.disabled = true
 meanOfFiveButton.disabled = true
