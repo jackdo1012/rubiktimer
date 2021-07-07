@@ -11,20 +11,20 @@
     <div class="main">
       <div id="header">JD Timer</div>
       <div id="time">Time:</div>
-      <div id="timer" style="text-align: center">
+      <div id="timer">
         <span id="minutes">00</span>
         <span id="semicolon1">:</span>
         <span id="seconds">00</span>
         <span id="semicolon2">.</span>
         <span id="milliseconds">00</span>
       </div>
-      <div id="go">GO!!!</div>
+
       <div id="meanOfFive">mo5:</div>
       <div id="averageOfFive">ao5:</div>
       <button id="plusTwo" onclick="plus2hide()">+2</button>
       <button id="DNF" onclick="dnfhide();">DNF</button>
     </div>
-
+    <div id="go">GO!!!</div>
     <div id="function-area">
       <span class="item" id="title">Function</span>
       <span class="item" id="function">mo5: </span>
@@ -32,7 +32,15 @@
       <span class="item" id="function">ao5: </span>
       <input class="item" type="button" value="on" id="averageOfFiveButton" />
       <span class="item" id="function">penalty: </span>
-      <input class="item" type="checkbox" id="penalty" />
+      <input class="item" type="button" id="penalty" />
+      <span class="item" id="function">font: </span>
+      <select class="item" id="font">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
     </div>
   </body>
   <footer>
