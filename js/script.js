@@ -24,11 +24,11 @@ mo5Button.addEventListener("click", mo5Hide)
 pen.addEventListener("click", function () {
   b++
   if (b % 2 == 1) {
-    DNF.style.display = "inline-block"
-    plus2.style.display = "inline-block"
+    DNF.style.visibility = "visible"
+    plus2.style.visibility = "visible"
   } else {
-    DNF.style.display = "none"
-    plus2.style.display = "none"
+    DNF.style.visibility = "hidden"
+    plus2.style.visibility = "hidden"
   }
 })
 
@@ -111,8 +111,8 @@ document.body.onkeyup = function (e) {
     a++
     if (a % 2 == 1) {
       window.reset = false
-      plus2.style.display = "none"
-      DNF.style.display = "none"
+      plus2.style.visibility = "hidden"
+      DNF.style.visibility = "hidden"
       myFunc = setInterval(setTime, 10)
       totalSecond = 0
       window.run = true
@@ -263,13 +263,13 @@ document.body.onkeydown = function (e) {
 
 function dnfhide() {
   if (window.penAvailable) {
-    DNF.style.display = "none"
+    DNF.style.visibility = "hidden"
   }
 }
 
 function plus2hide() {
   if (window.penAvailable) {
-    plus2.style.display = "none"
+    plus2.style.visibility = "hidden"
   }
 }
 

@@ -9,7 +9,6 @@ body {
   height: fit-content;
 }
 .main {
-  position: absolute;
   display: grid;
   grid-template-rows: 10vh 25vh auto auto auto auto;
   grid-template-columns: 25vw 25vw 25vw 25vw;
