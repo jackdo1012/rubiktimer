@@ -8,6 +8,8 @@ var mo5Button = document.getElementById("meanOfFiveButton")
 var plus2 = document.getElementById("plusTwo")
 var DNF = document.getElementById("DNF")
 var pen = document.getElementById("penalty")
+var font = document.getElementById("font")
+var timer = document.getElementById("timer")
 var totalSecond = 0
 var a = 0
 var b = 0
@@ -29,6 +31,44 @@ pen.addEventListener("click", function () {
     plus2.style.display = "none"
   }
 })
+
+font.addEventListener(
+  "change",
+  function () {
+    if (font.value == "1") {
+      second.style.fontFamily = "lcd"
+      minutes.style.fontFamily = "lcd"
+      milliseconds.style.fontFamily = "lcd"
+      document.getElementById("semicolon1").style.fontFamily = "lcd"
+      document.getElementById("semicolon2").style.fontFamily = "lcd"
+    } else if (font.value == "2") {
+      second.style.fontFamily = "lcd2"
+      minutes.style.fontFamily = "lcd2"
+      milliseconds.style.fontFamily = "lcd2"
+      document.getElementById("semicolon1").style.fontFamily = "lcd2"
+      document.getElementById("semicolon2").style.fontFamily = "lcd2"
+    } else if (font.value == "3") {
+      second.style.fontFamily = "lcd3"
+      minutes.style.fontFamily = "lcd3"
+      milliseconds.style.fontFamily = "lcd3"
+      document.getElementById("semicolon1").style.fontFamily = "lcd3"
+      document.getElementById("semicolon2").style.fontFamily = "lcd3"
+    } else if (font.value == "4") {
+      second.style.fontFamily = "lcd4"
+      minutes.style.fontFamily = "lcd4"
+      milliseconds.style.fontFamily = "lcd4"
+      document.getElementById("semicolon1").style.fontFamily = "lcd4"
+      document.getElementById("semicolon2").style.fontFamily = "lcd4"
+    } else if (font.value == "5") {
+      second.style.fontFamily = "lcd5"
+      minutes.style.fontFamily = "lcd5"
+      milliseconds.style.fontFamily = "lcd5"
+      document.getElementById("semicolon1").style.fontFamily = "lcd5"
+      document.getElementById("semicolon2").style.fontFamily = "lcd5"
+    }
+  },
+  false
+)
 
 function setTime() {
   // this function make the time display
