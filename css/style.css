@@ -47,9 +47,12 @@ body {
   display: none;
 }
 #go {
+  position: absolute;
   color: white;
-  display: none;
+  visibility: hidden;
   font-size: 5vmax;
+  left: 45%;
+  top: 80%;
 }
 
 #meanOfFive {
@@ -101,8 +104,8 @@ body {
 }
 
 #function-area {
-  grid-row-start: 2;
-  grid-column: 1;
+  grid-column: 1 / span 1;
+  grid-row-start: 1;
   display: grid;
   width: 20vw;
   background-color: gray;

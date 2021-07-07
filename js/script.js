@@ -18,6 +18,9 @@ var solves = []
 var run = false
 
 pen.disabled = true
+meanOfFiveButton.disabled = true
+averageOfFiveButton.disabled = true
+font.disabled = true
 ao5Button.addEventListener("click", ao5Hide)
 mo5Button.addEventListener("click", mo5Hide)
 
@@ -75,7 +78,7 @@ function setTime() {
   second.style.color = "white"
   millisecond.style.color = "white"
   minutes.style.color = "white"
-  document.getElementById("go").style.display = "none"
+  document.getElementById("go").style.visibility = "hidden"
   document.getElementById("semicolon1").style.color = "white"
   document.getElementById("semicolon2").style.color = "white"
   ++totalSecond
@@ -239,12 +242,18 @@ document.body.onkeypress = function (e) {
     mo5.innerHTML = "mo5: " + meanOf(5)
     ao5.innerHTML = "ao5: " + averageOf(5)
     pen.disabled = false
+    meanOfFiveButton.disabled = false
+    averageOfFiveButton.disabled = false
+    font.disabled = false
   }
 }
 
 document.body.onkeydown = function (e) {
   pen.checked = false
   pen.disabled = true
+  meanOfFiveButton.disabled = true
+  averageOfFiveButton.disabled = true
+  font.disabled = true
   if (e.keyCode == 32 && window.reset == true) {
     // when key space bar is hold and timer isn't start
     second.style.color = "rgb(153, 255, 102)"
@@ -252,7 +261,7 @@ document.body.onkeydown = function (e) {
     minutes.style.color = "rgb(153, 255, 102)"
     document.getElementById("semicolon1").style.color = "rgb(153, 255, 102)"
     document.getElementById("semicolon2").style.color = "rgb(153, 255, 102)"
-    document.getElementById("go").style.display = "inline-block"
+    document.getElementById("go").style.visibility = "visible"
     millisecond.innerHTML = "00"
     second.innerHTML = "00"
     minutes.innerHTML = "00"
