@@ -10,25 +10,19 @@ var DNF = document.getElementById("DNF")
 var pen = document.getElementById("penalty")
 var font = document.getElementById("font")
 var timer = document.getElementById("timer")
-var threeByThreeScramble = "../scramble/threeByThreeScramble.txt"
+var scramble3x3 = "../scramble/scramble3x3.txt"
 var totalSecond = 0
 var a = 0
+var z = 0
 var reset = true
 var solves = []
 var run = false
 
-fetch(threeByThreeScramble)
-  .then((myFile) => myFile.text())
-  .then(function (myScramble) {
-    var myScrambleArray = myScramble.split("\n")
-    return (document.getElementById("scramble-area").innerHTML =
-      myScrambleArray[Math.floor(Math.random() * myScrambleArray.length)])
-  })
-
+scramble()
 pen.disabled = true
 meanOfFiveButton.disabled = true
 averageOfFiveButton.disabled = true
-font.disabled = true
+font.disabled = false
 ao5Button.addEventListener("click", ao5Hide)
 mo5Button.addEventListener("click", mo5Hide)
 
@@ -36,35 +30,18 @@ font.addEventListener(
   "change",
   function () {
     if (font.value == "1") {
-      second.style.fontFamily = "lcd"
-      minutes.style.fontFamily = "lcd"
-      milliseconds.style.fontFamily = "lcd"
-      document.getElementById("semicolon1").style.fontFamily = "lcd"
-      document.getElementById("semicolon2").style.fontFamily = "lcd"
+      document.querySelector("#timer").style.fontFamily = "lcd"
     } else if (font.value == "2") {
-      second.style.fontFamily = "lcd2"
-      minutes.style.fontFamily = "lcd2"
-      milliseconds.style.fontFamily = "lcd2"
-      document.getElementById("semicolon1").style.fontFamily = "lcd2"
-      document.getElementById("semicolon2").style.fontFamily = "lcd2"
+      document.querySelector("#timer").style.fontFamily = "lcd2"
     } else if (font.value == "3") {
-      second.style.fontFamily = "lcd3"
-      minutes.style.fontFamily = "lcd3"
-      milliseconds.style.fontFamily = "lcd3"
-      document.getElementById("semicolon1").style.fontFamily = "lcd3"
-      document.getElementById("semicolon2").style.fontFamily = "lcd3"
+      document.querySelector("#timer").style.fontFamily = "lcd3"
     } else if (font.value == "4") {
-      second.style.fontFamily = "lcd4"
-      minutes.style.fontFamily = "lcd4"
-      milliseconds.style.fontFamily = "lcd4"
-      document.getElementById("semicolon1").style.fontFamily = "lcd4"
-      document.getElementById("semicolon2").style.fontFamily = "lcd4"
+      document.querySelector("#timer").style.fontFamily = "lcd4"
     } else if (font.value == "5") {
-      second.style.fontFamily = "lcd5"
-      minutes.style.fontFamily = "lcd5"
-      milliseconds.style.fontFamily = "lcd5"
-      document.getElementById("semicolon1").style.fontFamily = "lcd5"
-      document.getElementById("semicolon2").style.fontFamily = "lcd5"
+      document.querySelector("#timer").style.fontFamily = "lcd5"
+    } else if (font.value == "6") {
+      document.querySelector("#timer").style.fontFamily = "lcd6"
+      document.querySelector("#timer").style.fontSize = "8rem"
     }
   },
   false
@@ -146,7 +123,6 @@ document.body.onkeypress = function (e) {
         }
         var ans = (sum / num).toFixed(2)
         if (ans < 60) {
-          console.log(solves.length)
           return ans
         } else if (ans < 70) {
           return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
@@ -237,7 +213,7 @@ document.body.onkeypress = function (e) {
       }
     })
     var b = 0
-    pen.addEventListener("click", function () {
+    pen.addEventListener("click", () => {
       b++
       if (b % 2 == 1) {
         DNF.style.visibility = "visible"
@@ -253,6 +229,7 @@ document.body.onkeypress = function (e) {
     meanOfFiveButton.disabled = false
     averageOfFiveButton.disabled = false
     font.disabled = false
+    scramble()
   }
 }
 document.body.onkeydown = function (e) {
@@ -308,4 +285,22 @@ function mo5Hide() {
     mo5.style.visibility = "visible"
     mo5Button.value = "on"
   }
+}
+
+function scramble() {
+  fetch(scramble3x3)
+    .then((myFile) => myFile.text())
+    .then(function (myScramble) {
+      var myScrambleArray = myScramble.split("\n")
+      return ((scramble, scrambleLength) => {
+        if (z < scrambleLength - 1) {
+          z++
+          return (document.querySelector("#scramble-area").innerHTML =
+            scramble[z])
+        } else {
+          return (document.querySelector("#scramble-area").innerHTML =
+            "Sorry, we have no more scramble to display")
+        }
+      })(myScrambleArray, myScrambleArray.length)
+    })
 }
