@@ -18,3 +18,5 @@ const scrambleStep = [
   "R2",
   "L2",
 ]
+const numberOfMoves = 21
+var scramble = []

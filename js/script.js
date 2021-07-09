@@ -140,25 +140,13 @@ document.body.onkeypress = function (e) {
         var count = 0
         var firstNum = solves.slice(0, num)
         solvesAvg = firstNum.filter((value) => value !== "DNF")
-        // for (var i = 0; i < first5.length; i++) {
-        //   if (first5[i] == "DNF") {
-        //     count++
-        //     first5.splice(i, 1)
-        //     console.log("solves: " + solves)
-        //     console.log("first5: " + first5)
-        //     console.log("i: " + i)
-        //     // console.log("solvesAvg: " + solvesAvg)
-        //   }
-        // }
         if (solvesAvg.length == 5) {
           solvesAvg.sort(function (a, b) {
             return a - b
           })
           solvesAvg.pop()
           solvesAvg.shift()
-          for (var i = 0; i < solvesAvg.length; i++) {
-            sum += solvesAvg[i]
-          }
+          var sum = solvesAvg.reduce((a, b) => a + b)
           var ans = (sum / (num - 2)).toFixed(2)
           if (ans < 60) {
             return ans
@@ -172,9 +160,7 @@ document.body.onkeypress = function (e) {
             return a - b
           })
           solvesAvg.splice(0, 1)
-          for (var i = 0; i < solvesAvg.length; i++) {
-            sum += solvesAvg[i]
-          }
+          var sum = solvesAvg.reduce((a, b) => a + b)
           var ans = (sum / (num - 2)).toFixed(2)
           if (ans < 60) {
             return ans

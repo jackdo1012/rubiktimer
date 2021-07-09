@@ -28,7 +28,7 @@ body {
 #time {
   color: yellow;
   font-size: 8vmax;
-  justify-self: right;
+  justify-self: center;
   grid-column: 2 / span 1;
   grid-row: 3 / span 1;
 }
