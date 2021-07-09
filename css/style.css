@@ -5,6 +5,7 @@ body {
   background-color: black;
 }
 .main div {
+  /* border: 1px solid white; */
   width: fit-content;
   height: fit-content;
 }
@@ -38,7 +39,7 @@ body {
   color: white;
   justify-self: left;
   font-size: 8vmax;
-  grid-column: 3 / span 1;
+  grid-column: 3 / span 2;
   grid-row: 3 / span 1;
 }
 
@@ -79,7 +80,7 @@ body {
   width: 73vw;
   height: 10vh;
   border-radius: 10px;
-  font-size: 2rem;
+  font-size: 3vmax;
   text-align: center;
   line-height: 10vh;
   grid-column: 2 / span 3;

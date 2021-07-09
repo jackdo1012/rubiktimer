@@ -1,16 +1,16 @@
-var minutes = document.getElementById("minutes")
-var second = document.getElementById("seconds")
-var millisecond = document.getElementById("milliseconds")
-var mo5 = document.getElementById("meanOfFive")
-var ao5 = document.getElementById("averageOfFive")
-var ao5Button = document.getElementById("averageOfFiveButton")
-var mo5Button = document.getElementById("meanOfFiveButton")
-var plus2 = document.getElementById("plusTwo")
-var DNF = document.getElementById("DNF")
-var pen = document.getElementById("penalty")
-var font = document.getElementById("font")
-var timer = document.getElementById("timer")
-var scramble3x3 = "../scramble/scramble3x3.txt"
+const minutes = document.getElementById("minutes")
+const second = document.getElementById("seconds")
+const millisecond = document.getElementById("milliseconds")
+const mo5 = document.getElementById("meanOfFive")
+const ao5 = document.getElementById("averageOfFive")
+const ao5Button = document.getElementById("averageOfFiveButton")
+const mo5Button = document.getElementById("meanOfFiveButton")
+const plus2 = document.getElementById("plusTwo")
+const DNF = document.getElementById("DNF")
+const pen = document.getElementById("penalty")
+const font = document.getElementById("font")
+const timer = document.getElementById("timer")
+const scramble3x3 = "../scramble/scramble3x3.txt"
 var totalSecond = 0
 var a = 0
 var z = 0
@@ -20,8 +20,8 @@ var run = false
 
 scramble()
 pen.disabled = true
-meanOfFiveButton.disabled = true
-averageOfFiveButton.disabled = true
+meanOfFiveButton.disabled = false
+averageOfFiveButton.disabled = false
 font.disabled = false
 ao5Button.addEventListener("click", ao5Hide)
 mo5Button.addEventListener("click", mo5Hide)
@@ -114,13 +114,13 @@ document.body.onkeypress = function (e) {
     function meanOf(num) {
       if (solves.length >= num) {
         var sum = 0
-        for (var i = 0; i < num; i++) {
-          if (solves[i] == "DNF") {
+        var solvesMean = solves.slice(0, num)
+        for (i of solvesMean) {
+          if (i == "DNF") {
             return "DNF"
-          } else {
-            sum += solves[i]
           }
         }
+        sum = solvesMean.reduce((total, current) => total + current)
         var ans = (sum / num).toFixed(2)
         if (ans < 60) {
           return ans
@@ -138,14 +138,19 @@ document.body.onkeypress = function (e) {
       if (solves.length >= num) {
         var sum = 0
         var count = 0
-        solvesAvg = solves.slice(0, num)
-        for (var i = 0; i < solves.length; i++) {
-          if (solvesAvg[i] == "DNF") {
-            count++
-            solvesAvg.splice(i, 1)
-          }
-        }
-        if (count == 0) {
+        var firstNum = solves.slice(0, num)
+        solvesAvg = firstNum.filter((value) => value !== "DNF")
+        // for (var i = 0; i < first5.length; i++) {
+        //   if (first5[i] == "DNF") {
+        //     count++
+        //     first5.splice(i, 1)
+        //     console.log("solves: " + solves)
+        //     console.log("first5: " + first5)
+        //     console.log("i: " + i)
+        //     // console.log("solvesAvg: " + solvesAvg)
+        //   }
+        // }
+        if (solvesAvg.length == 5) {
           solvesAvg.sort(function (a, b) {
             return a - b
           })
@@ -162,7 +167,7 @@ document.body.onkeypress = function (e) {
           } else {
             return Math.floor(ans / 60) + ":" + (ans % 60).toFixed(2)
           }
-        } else if (count == 1) {
+        } else if (solvesAvg.length == 4) {
           solvesAvg.sort(function (a, b) {
             return a - b
           })
@@ -253,17 +258,6 @@ document.body.onkeydown = function (e) {
     document.getElementById("semicolon1").style.color = "rgb(153, 255, 102)"
     document.getElementById("semicolon2").style.color = "rgb(153, 255, 102)"
     document.getElementById("go").style.visibility = "visible"
-  }
-}
-function dnfhide() {
-  if (window.penAvailable) {
-    DNF.style.visibility = "hidden"
-  }
-}
-
-function plus2hide() {
-  if (window.penAvailable) {
-    plus2.style.visibility = "hidden"
   }
 }
 

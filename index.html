@@ -21,8 +21,26 @@
       </div>
       <div id="meanOfFive">mo5:</div>
       <div id="averageOfFive">ao5:</div>
-      <button id="plusTwo" onclick="plus2hide()">+2</button>
-      <button id="DNF" onclick="dnfhide();">DNF</button>
+      <button
+        id="plusTwo"
+        onclick='(()=>{
+        if (window.penAvailable) {
+            plus2.style.visibility = "hidden"
+          }
+      })()'
+      >
+        +2
+      </button>
+      <button
+        id="DNF"
+        onclick='(()=>{
+        if (window.penAvailable) {
+            DNF.style.visibility = "hidden"
+          }
+      })()'
+      >
+        DNF
+      </button>
       <div id="function-area">
         <span class="item" id="title">Function</span>
         <span class="item" id="function">mo5: </span>
