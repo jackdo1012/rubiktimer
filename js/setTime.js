@@ -26,8 +26,8 @@ function setTime() {
   timer.style.visibility = "visible"
 
   timer.style.position = "relative"
-  timer.style.gridRow = "3/ span 2"
   timer.style.gridColumn = "2/ span 2"
+  timer.style.gridRow = "3/ span 2"
   timer.style.textAlign = "center"
 }
 function pad(value) {

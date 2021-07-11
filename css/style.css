@@ -14,14 +14,16 @@ body {
 }
 
 #scramble-area {
-  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: auto 5%;
+  height: 10vh;
+  font-size: 1.8rem;
   background-color: gray;
   border-radius: 10px;
   grid-column: 2 / span 3;
   grid-row: 1;
-  text-align: center;
-  display: grid;
-  align-items: center;
 }
 
 #header {

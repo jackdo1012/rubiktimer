@@ -10,6 +10,7 @@ const DNF = document.getElementById("DNF")
 const pen = document.getElementById("penalty")
 const font = document.getElementById("font")
 const timer = document.getElementById("timer")
+var mediaQuery1 = window.matchMedia("(max-width: 800px)")
 var totalSecond = 0
 var a = 0
 var reset = true
@@ -33,7 +34,7 @@ function scramble() {
   import("../scramble/scramble.js").then((response) => {
     var scramble = response.getScramble()
     scrambles.push(scramble)
-    document.querySelector("#scramble-area").innerHTML = scramble
+    document.querySelector("#scramble-text").innerHTML = scramble
   })
 }
 scramble()
@@ -57,9 +58,6 @@ font.addEventListener(
       document.querySelector("#timer").style.fontFamily = "lcd4"
     } else if (font.value == "5") {
       document.querySelector("#timer").style.fontFamily = "lcd5"
-    } else if (font.value == "6") {
-      document.querySelector("#timer").style.fontFamily = "lcd6"
-      document.querySelector("#timer").style.fontSize = "8rem"
     }
   },
   false
@@ -205,10 +203,18 @@ document.body.onkeypress = function (e) {
     averageOfFiveButton.disabled = false
     font.disabled = false
     scramble()
-    timer.style.position = "none"
-    timer.style.gridColumn = "3/ span 2"
-    timer.style.gridRow = "3/ span 1"
-    timer.style.textAlign = "left"
+    // === === === === === === === === === ===
+    if (mediaQuery1.matches) {
+      timer.style.position = "none"
+      timer.style.gridColumn = "1/ span 4"
+      timer.style.gridRow = "4/ span 1"
+      timer.style.textAlign = "center"
+    } else {
+      timer.style.position = "none"
+      timer.style.gridColumn = "3/ span 2"
+      timer.style.gridRow = "3/ span 1"
+      timer.style.textAlign = "left"
+    }
   }
 }
 document.body.onkeydown = function (e) {
@@ -393,10 +399,18 @@ timer.ontouchstart = () => {
     averageOfFiveButton.disabled = false
     font.disabled = false
 
-    timer.style.position = "none"
-    timer.style.gridColumn = "3/ span 2"
-    timer.style.gridRow = "3/ span 1"
-    timer.style.textAlign = "left"
+    if (mediaQuery1.matches) {
+      timer.style.position = "none"
+      timer.style.gridColumn = "1/ span 4"
+      timer.style.gridRow = "4/ span 1"
+      timer.style.textAlign = "center"
+    } else {
+      timer.style.position = "none"
+      timer.style.gridColumn = "3/ span 2"
+      timer.style.gridRow = "3/ span 1"
+      timer.style.textAlign = "left"
+    }
+
     scramble()
   }
 }
