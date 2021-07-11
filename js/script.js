@@ -10,14 +10,19 @@ const DNF = document.getElementById("DNF")
 const pen = document.getElementById("penalty")
 const font = document.getElementById("font")
 const timer = document.getElementById("timer")
-const scramble3x3 = "../scramble/scramble3x3.txt"
+// const scramble3x3 = "../scramble/scramble3x3.txt"
 var totalSecond = 0
 var a = 0
-var z = 0
+// var z = 0
 var reset = true
 var solves = []
 var run = false
 
+function scramble() {
+  import("../scramble/scramble.js").then((response) => {
+    document.querySelector("#scramble-area").innerHTML = response.getScramble()
+  })
+}
 scramble()
 pen.disabled = true
 meanOfFiveButton.disabled = false
@@ -267,20 +272,20 @@ function mo5Hide() {
   }
 }
 
-function scramble() {
-  fetch(scramble3x3)
-    .then((myFile) => myFile.text())
-    .then(function (myScramble) {
-      var myScrambleArray = myScramble.split("\n")
-      return ((scramble, scrambleLength) => {
-        if (z < scrambleLength - 1) {
-          z++
-          return (document.querySelector("#scramble-area").innerHTML =
-            scramble[z])
-        } else {
-          return (document.querySelector("#scramble-area").innerHTML =
-            "Sorry, we have no more scramble to display")
-        }
-      })(myScrambleArray, myScrambleArray.length)
-    })
-}
+// function scramble() {
+//   fetch(scramble3x3)
+//     .then((myFile) => myFile.text())
+//     .then(function (myScramble) {
+//       var myScrambleArray = myScramble.split("\n")
+//       return ((scramble, scrambleLength) => {
+//         if (z < scrambleLength - 1) {
+//           z++
+//           return (document.querySelector("#scramble-area").innerHTML =
+//             scramble[z])
+//         } else {
+//           return (document.querySelector("#scramble-area").innerHTML =
+//             "Sorry, we have no more scramble to display")
+//         }
+//       })(myScrambleArray, myScrambleArray.length)
+//     })
+// }

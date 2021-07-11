@@ -10,13 +10,24 @@ body {
 .main {
   display: grid;
   grid-template-rows: 10vh 25vh auto auto auto auto;
-  grid-template-columns: 24.75vw 24.75vw 24.75vw 24.75vw;
+  grid-template-columns: 25% 25% 25% 25%;
+}
+
+#scramble-area {
+  font-size: 2rem;
+  background-color: gray;
+  border-radius: 10px;
+  grid-column: 2 / span 3;
+  grid-row: 1;
+  text-align: center;
+  display: grid;
+  align-items: center;
 }
 
 #header {
   font-family: "Otomanopee One", sans-serif;
   font-weight: bold;
-  font-size: 10vmax;
+  font-size: 10vw;
   color: aqua;
   text-align: center;
   height: fit-content;
@@ -27,7 +38,7 @@ body {
 
 #time {
   color: yellow;
-  font-size: 8vmax;
+  font-size: 8vw;
   text-align: center;
   grid-column: 2 / span 1;
   grid-row: 3 / span 1;
@@ -43,7 +54,7 @@ body {
 }
 
 #timer span {
-  font-size: 8vmax;
+  font-size: 8vw;
 }
 
 #semicolon1,
@@ -76,15 +87,6 @@ body {
   grid-row: 4 / span 1;
   grid-column: 2 / span 2;
   grid-row: 5 / span 1;
-}
-
-#scramble-area {
-  background-color: gray;
-  border-radius: 10px;
-  text-align: center;
-  line-height: 10vh;
-  grid-column: 2 / span 3;
-  grid-row: 1;
 }
 
 #plusTwo {
@@ -120,7 +122,7 @@ body {
   grid-column: 1 / span 1;
   height: fit-content;
   display: grid;
-  width: fit-content;
+  width: 90%;
   background-color: gray;
   border-radius: 10px;
   grid-row-gap: 10px;
@@ -133,6 +135,7 @@ body {
   color: yellow;
   grid-column: 1 / 3;
   text-align: center;
+  width: 100%;
   font-size: 4vmax;
   color: #17fc03;
   border-radius: 10px;
@@ -142,6 +145,7 @@ body {
   text-align: center;
   border-radius: 10px;
   font-size: 2rem;
+  padding: 3%;
   min-width: fit-content;
   min-height: fit-content;
 }
@@ -162,14 +166,12 @@ body {
   background-color: black;
   color: #17fc03;
 }
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px) {
   .main {
     display: grid;
-    grid-template-rows: 10vh 25vh auto auto auto auto;
-    grid-template-columns: 24vw 24vw 24vw 24vw;
+    grid-template-rows: auto 25vh auto auto auto auto;
   }
   #scramble-area {
-    font-size: small;
     grid-column: 1 / span 4;
   }
   #header {
@@ -179,11 +181,15 @@ body {
   }
   #time {
     grid-column: 1 / span 4;
+    font-size: 8vmax;
   }
   #timer {
     grid-column: 1 / span 4;
     grid-row: 4 / span 1;
     text-align: center;
+  }
+  #timer span {
+    font-size: 8vmax;
   }
   #meanOfFive {
     grid-row: 5 / span 1;
@@ -192,7 +198,49 @@ body {
     grid-row: 6 / span 1;
   }
   #function-area {
-    grid-row: 7;
+    grid-row: 8;
     grid-column: 1 / span 2;
+  }
+  #plusTwo {
+    grid-row: 7;
+    grid-column: 2 / span 1;
+  }
+  #DNF {
+    grid-row: 7;
+    grid-column: 3 / span 1;
+  }
+}
+@media screen and (min-width: 1500px) {
+  .main {
+    border: 1px solid white;
+    margin: auto;
+    max-width: 1500px;
+  }
+  #header {
+    font-size: 150px;
+  }
+  #time {
+    font-size: 120px;
+  }
+  #timer span {
+    font-size: 120px;
+  }
+  #function-area {
+    max-width: 375px;
+  }
+  #function-area #title {
+    font-size: 60px;
+  }
+  #function-area #function {
+    font-size: 30px;
+  }
+  #function-area input {
+    font-size: 30px;
+  }
+  #averageOfFive {
+    font-size: 45px;
+  }
+  #meanOfFive {
+    font-size: 45px;
   }
 }
