@@ -205,11 +205,6 @@ document.body.onkeypress = function (e) {
     averageOfFiveButton.disabled = false
     font.disabled = false
     scramble()
-    document.getElementById("semicolon1").style.fontSize = "8vw"
-    document.getElementById("semicolon2").style.fontSize = "8vw"
-    minutes.style.fontSize = "8vw"
-    seconds.style.fontSize = "8vw"
-    milliseconds.style.fontSize = "8vw"
     timer.style.position = "none"
     timer.style.gridColumn = "3/ span 2"
     timer.style.gridRow = "3/ span 1"
@@ -398,11 +393,6 @@ timer.ontouchstart = () => {
     averageOfFiveButton.disabled = false
     font.disabled = false
 
-    document.getElementById("semicolon1").style.fontSize = "8vw"
-    document.getElementById("semicolon2").style.fontSize = "8vw"
-    minutes.style.fontSize = "8vw"
-    seconds.style.fontSize = "8vw"
-    milliseconds.style.fontSize = "8vw"
     timer.style.position = "none"
     timer.style.gridColumn = "3/ span 2"
     timer.style.gridRow = "3/ span 1"

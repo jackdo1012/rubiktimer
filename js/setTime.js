@@ -25,11 +25,6 @@ function setTime() {
   document.body.style.visibility = "hidden"
   timer.style.visibility = "visible"
 
-  document.getElementById("semicolon1").style.fontSize = "10vw"
-  document.getElementById("semicolon2").style.fontSize = "10vw"
-  minutes.style.fontSize = "10vw"
-  seconds.style.fontSize = "10vw"
-  milliseconds.style.fontSize = "10vw"
   timer.style.position = "relative"
   timer.style.gridRow = "3/ span 2"
   timer.style.gridColumn = "2/ span 2"
