@@ -22,6 +22,18 @@ function setTime() {
     seconds.style.display = "inline-block"
     milliseconds.style.display = "inline-block"
   }
+  document.body.style.visibility = "hidden"
+  timer.style.visibility = "visible"
+
+  document.getElementById("semicolon1").style.fontSize = "10vw"
+  document.getElementById("semicolon2").style.fontSize = "10vw"
+  minutes.style.fontSize = "10vw"
+  seconds.style.fontSize = "10vw"
+  milliseconds.style.fontSize = "10vw"
+  timer.style.position = "relative"
+  timer.style.gridRow = "3/ span 2"
+  timer.style.gridColumn = "2/ span 2"
+  timer.style.textAlign = "center"
 }
 function pad(value) {
   // when the number is 1-digit, it add 0 to the first
