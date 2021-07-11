@@ -10,17 +10,31 @@ const DNF = document.getElementById("DNF")
 const pen = document.getElementById("penalty")
 const font = document.getElementById("font")
 const timer = document.getElementById("timer")
-// const scramble3x3 = "../scramble/scramble3x3.txt"
 var totalSecond = 0
 var a = 0
-// var z = 0
 var reset = true
 var solves = []
+var scrambles = []
 var run = false
+
+function setTime() {
+  import("./setTime.js").then((response) => {
+    return response.setTime()
+  })
+}
+
+function pad() {
+  import("./setTime.js").then((response) => {
+    return response.pad()
+  })
+}
 
 function scramble() {
   import("../scramble/scramble.js").then((response) => {
-    document.querySelector("#scramble-area").innerHTML = response.getScramble()
+    var scramble = response.getScramble()
+    scrambles.push(scramble)
+    document.querySelector("#scramble-area").innerHTML = scramble
+    console.log(scrambles)
   })
 }
 scramble()
@@ -51,41 +65,6 @@ font.addEventListener(
   },
   false
 )
-
-function setTime() {
-  // this function make the time display
-  second.style.color = "white"
-  millisecond.style.color = "white"
-  minutes.style.color = "white"
-  document.getElementById("go").style.visibility = "hidden"
-  document.getElementById("semicolon1").style.color = "white"
-  document.getElementById("semicolon2").style.color = "white"
-  ++totalSecond
-  millisecond.innerHTML = pad(totalSecond % 100)
-  second.innerHTML = pad(parseInt(totalSecond / 100) % 60)
-  minutes.innerHTML = pad(parseInt(totalSecond / 6000))
-  if (parseInt(totalSecond / 6000) < 1) {
-    document.getElementById("semicolon1").style.display = "none"
-    document.getElementById("semicolon2").style.display = "inline-block"
-    minutes.style.display = "none"
-    seconds.style.display = "inline-block"
-    milliseconds.style.display = "inline-block"
-  } else {
-    document.getElementById("semicolon1").style.display = "inline-block"
-    minutes.style.display = "inline-block"
-    seconds.style.display = "inline-block"
-    milliseconds.style.display = "inline-block"
-  }
-}
-function pad(value) {
-  // when the number is 1-digit, it add 0 to the first
-  var valueString = value + ""
-  if (valueString.length < 2) {
-    return "0" + valueString
-  } else {
-    return valueString
-  }
-}
 
 document.body.onkeyup = function (e) {
   // when you press space and the key is up
@@ -271,21 +250,3 @@ function mo5Hide() {
     mo5Button.value = "on"
   }
 }
-
-// function scramble() {
-//   fetch(scramble3x3)
-//     .then((myFile) => myFile.text())
-//     .then(function (myScramble) {
-//       var myScrambleArray = myScramble.split("\n")
-//       return ((scramble, scrambleLength) => {
-//         if (z < scrambleLength - 1) {
-//           z++
-//           return (document.querySelector("#scramble-area").innerHTML =
-//             scramble[z])
-//         } else {
-//           return (document.querySelector("#scramble-area").innerHTML =
-//             "Sorry, we have no more scramble to display")
-//         }
-//       })(myScrambleArray, myScrambleArray.length)
-//     })
-// }

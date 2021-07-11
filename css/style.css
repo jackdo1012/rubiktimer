@@ -145,7 +145,7 @@ body {
   text-align: center;
   border-radius: 10px;
   font-size: 2rem;
-  padding: 3%;
+  padding: 5%;
   min-width: fit-content;
   min-height: fit-content;
 }
@@ -153,7 +153,7 @@ body {
   border: 0px;
   grid-column: 2;
   border-radius: 10px;
-  font-size: 2vmax;
+  font-size: 3vmax;
   background-color: black;
   align-self: center;
   justify-self: center;
@@ -212,7 +212,7 @@ body {
 }
 @media screen and (min-width: 1500px) {
   .main {
-    border: 1px solid white;
+    /* border: 1px solid white; */
     margin: auto;
     max-width: 1500px;
   }
@@ -235,7 +235,7 @@ body {
     font-size: 30px;
   }
   #function-area input {
-    font-size: 30px;
+    font-size: 45px;
   }
   #averageOfFive {
     font-size: 45px;
