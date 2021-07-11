@@ -37,13 +37,29 @@ function scramble() {
     document.querySelector("#scramble-text").innerHTML = scramble
   })
 }
-scramble()
-pen.disabled = true
-meanOfFiveButton.disabled = false
-averageOfFiveButton.disabled = false
-font.disabled = false
-ao5Button.addEventListener("click", ao5Hide)
-mo5Button.addEventListener("click", mo5Hide)
+
+var statShow = () => {
+  document.body.querySelector("#numOfSolves").innerHTML = `Solves: ${
+    solves.filter((value) => value != "DNF").length
+  }/${solves.length}`
+  if (solves.includes("DNF")) {
+    document.querySelector("#worst").innerHTML = "Worst: DNF"
+    document.querySelector("#best").innerHTML =
+      "Best: " + Math.max(...solves.filter((value) => value != "DNF"))
+  } else {
+    document.querySelector("#best").innerHTML = "Best: " + Math.min(...solves)
+    document.querySelector("#worst").innerHTML = "Worst: " + Math.max(...solves)
+  }
+}
+;(() => {
+  scramble()
+  pen.disabled = true
+  meanOfFiveButton.disabled = false
+  averageOfFiveButton.disabled = false
+  font.disabled = false
+  ao5Button.addEventListener("click", ao5Hide)
+  mo5Button.addEventListener("click", mo5Hide)
+})()
 
 font.addEventListener(
   "change",
@@ -119,7 +135,6 @@ document.body.onkeypress = function (e) {
     function averageOf(num) {
       if (solves.length >= num) {
         var sum = 0
-        var count = 0
         var firstNum = solves.slice(0, num)
         solvesAvg = firstNum.filter((value) => value !== "DNF")
         if (solvesAvg.length == 5) {
@@ -167,6 +182,7 @@ document.body.onkeypress = function (e) {
         } else {
           seconds.innerHTML = Math.floor(timeOfSolve)
         }
+        statShow()
         mo5.innerHTML = "mo5: " + meanOf(5)
         ao5.innerHTML = "ao5: " + averageOf(5)
       }
@@ -181,6 +197,7 @@ document.body.onkeypress = function (e) {
         minutes.innerHTML = "DNF"
         document.getElementById("semicolon1").style.display = "none"
         document.getElementById("semicolon2").style.display = "none"
+        statShow()
         mo5.innerHTML = "mo5: " + meanOf(5)
         ao5.innerHTML = "ao5: " + averageOf(5)
       }
@@ -203,6 +220,7 @@ document.body.onkeypress = function (e) {
     averageOfFiveButton.disabled = false
     font.disabled = false
     scramble()
+    statShow()
     // === === === === === === === === === ===
     if (mediaQuery1.matches) {
       timer.style.position = "none"
@@ -315,7 +333,6 @@ timer.ontouchstart = () => {
     function averageOf(num) {
       if (solves.length >= num) {
         var sum = 0
-        var count = 0
         var firstNum = solves.slice(0, num)
         solvesAvg = firstNum.filter((value) => value !== "DNF")
         if (solvesAvg.length == 5) {
@@ -377,6 +394,7 @@ timer.ontouchstart = () => {
         minutes.innerHTML = "DNF"
         document.getElementById("semicolon1").style.display = "none"
         document.getElementById("semicolon2").style.display = "none"
+        statShow()
         mo5.innerHTML = "mo5: " + meanOf(5)
         ao5.innerHTML = "ao5: " + averageOf(5)
       }
@@ -410,7 +428,7 @@ timer.ontouchstart = () => {
       timer.style.gridRow = "3/ span 1"
       timer.style.textAlign = "left"
     }
-
+    statShow()
     scramble()
   }
 }
