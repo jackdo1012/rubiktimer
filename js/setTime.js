@@ -22,13 +22,6 @@ function setTime() {
     seconds.style.display = "inline-block"
     milliseconds.style.display = "inline-block"
   }
-  document.body.style.visibility = "hidden"
-  timer.style.visibility = "visible"
-
-  timer.style.position = "relative"
-  timer.style.gridColumn = "2/ span 2"
-  timer.style.gridRow = "3/ span 2"
-  timer.style.textAlign = "center"
 }
 function pad(value) {
   // when the number is 1-digit, it add 0 to the first

@@ -233,6 +233,8 @@ document.body.onkeypress = function (e) {
       timer.style.gridRow = "3/ span 1"
       timer.style.textAlign = "left"
     }
+    ao5.style.display = "inline-block"
+    mo5.style.display = "inline-block"
   }
 }
 document.body.onkeydown = function (e) {
@@ -256,6 +258,14 @@ document.body.onkeydown = function (e) {
     document.getElementById("semicolon1").style.color = "rgb(153, 255, 102)"
     document.getElementById("semicolon2").style.color = "rgb(153, 255, 102)"
     document.getElementById("go").style.visibility = "visible"
+
+    document.body.style.visibility = "hidden"
+    ao5.style.display = "none"
+    mo5.style.display = "none"
+    timer.style.visibility = "visible"
+    timer.style.gridColumn = "2/ span 2"
+    timer.style.gridRow = "3/ span 2"
+    timer.style.textAlign = "center"
   }
 }
 
@@ -296,6 +306,14 @@ timer.ontouchstart = () => {
     document.getElementById("semicolon1").style.color = "rgb(153, 255, 102)"
     document.getElementById("semicolon2").style.color = "rgb(153, 255, 102)"
     document.getElementById("go").style.visibility = "visible"
+
+    document.body.style.visibility = "hidden"
+    ao5.style.display = "none"
+    mo5.style.display = "none"
+    timer.style.visibility = "visible"
+    timer.style.gridColumn = "2/ span 2"
+    timer.style.gridRow = "3/ span 2"
+    timer.style.textAlign = "center"
   }
   if (window.reset == false && window.run == true) {
     document.body.style.visibility = "visible"
@@ -416,7 +434,9 @@ timer.ontouchstart = () => {
     meanOfFiveButton.disabled = false
     averageOfFiveButton.disabled = false
     font.disabled = false
-
+    statShow()
+    scramble()
+    // === === === === === === === === === ===
     if (mediaQuery1.matches) {
       timer.style.position = "none"
       timer.style.gridColumn = "1/ span 4"
@@ -428,8 +448,8 @@ timer.ontouchstart = () => {
       timer.style.gridRow = "3/ span 1"
       timer.style.textAlign = "left"
     }
-    statShow()
-    scramble()
+    ao5.style.display = "inline-block"
+    mo5.style.display = "inline-block"
   }
 }
 
