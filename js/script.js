@@ -79,162 +79,24 @@ font.addEventListener(
   false
 )
 
+var whenKeyUp = () => {
+  import("./whenKeyIsUp.js").then((response) => response.whenKeyIsUp())
+}
+var whenKeyPress = () => {
+  import("./whenKeyIsPress.js").then((response) => response.whenKeyIsPress())
+}
+var whenKeyHold = () => {
+  import("./whenKeyIsHold.js").then((response) => response.whenKeyIsHold())
+}
 document.body.onkeyup = function (e) {
   // when you press space and the key is up
   if (e.keyCode == 32) {
-    a++
-    if (a % 2 == 1) {
-      window.reset = false
-      plus2.style.visibility = "hidden"
-      DNF.style.visibility = "hidden"
-      myFunc = setInterval(setTime, 10)
-      totalSecond = 0
-      window.run = true
-    } else if (a % 2 == 0) {
-      window.reset = true
-      totalSecond = 0
-      window.penAvailable = true
-    }
+    whenKeyUp()
   }
 }
 document.body.onkeypress = function (e) {
-  // when space bar is pressed and timer started already (press to stop)
-  if (e.keyCode == 32 && window.reset == false && window.run == true) {
-    document.body.style.visibility = "visible"
-    clearInterval(myFunc)
-    timeOfSolve =
-      parseInt(totalSecond / 6000) * 60 +
-      (parseInt(totalSecond / 100) % 60) +
-      (totalSecond % 100) / 100
-    solves.unshift(timeOfSolve)
-    window.run = false
-
-    function meanOf(num) {
-      if (solves.length >= num) {
-        var sum = 0
-        var solvesMean = solves.slice(0, num)
-        for (i of solvesMean) {
-          if (i == "DNF") {
-            return "DNF"
-          }
-        }
-        sum = solvesMean.reduce((total, current) => total + current)
-        var ans = (sum / num).toFixed(2)
-        if (ans < 60) {
-          return ans
-        } else if (ans < 70) {
-          return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
-        } else {
-          return Math.floor(ans / 60) + ":" + (ans % 60).toFixed(2)
-        }
-      } else {
-        return ""
-      }
-    }
-
-    function averageOf(num) {
-      if (solves.length >= num) {
-        var sum = 0
-        var firstNum = solves.slice(0, num)
-        solvesAvg = firstNum.filter((value) => value !== "DNF")
-        if (solvesAvg.length == 5) {
-          solvesAvg.sort(function (a, b) {
-            return a - b
-          })
-          solvesAvg.pop()
-          solvesAvg.shift()
-          var sum = solvesAvg.reduce((a, b) => a + b)
-          var ans = (sum / (num - 2)).toFixed(2)
-          if (ans < 60) {
-            return ans
-          } else if (ans < 70) {
-            return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
-          } else {
-            return Math.floor(ans / 60) + ":" + (ans % 60).toFixed(2)
-          }
-        } else if (solvesAvg.length == 4) {
-          solvesAvg.sort(function (a, b) {
-            return a - b
-          })
-          solvesAvg.splice(0, 1)
-          var sum = solvesAvg.reduce((a, b) => a + b)
-          var ans = (sum / (num - 2)).toFixed(2)
-          if (ans < 60) {
-            return ans
-          } else if (ans < 70) {
-            return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
-          } else {
-            return Math.floor(ans / 60) + ":" + (ans % 60).toFixed(2)
-          }
-        } else {
-          return "DNF"
-        }
-      } else {
-        return ""
-      }
-    }
-    plus2.addEventListener("click", function () {
-      if (window.penAvailable) {
-        window.penAvailable = false
-        solves[0] = timeOfSolve += 2.0
-        if (Math.floor(timeOfSolve) < 10) {
-          seconds.innerHTML = "0" + Math.floor(timeOfSolve)
-        } else {
-          seconds.innerHTML = Math.floor(timeOfSolve)
-        }
-        statShow()
-        mo5.innerHTML = "mo5: " + meanOf(5)
-        ao5.innerHTML = "ao5: " + averageOf(5)
-      }
-    })
-    DNF.addEventListener("click", function () {
-      if (window.penAvailable) {
-        window.penAvailable = false
-        solves[0] = "DNF"
-        millisecond.style.display = "none"
-        second.style.display = "none"
-        minutes.style.display = "inline-block"
-        minutes.innerHTML = "DNF"
-        document.getElementById("semicolon1").style.display = "none"
-        document.getElementById("semicolon2").style.display = "none"
-        statShow()
-        mo5.innerHTML = "mo5: " + meanOf(5)
-        ao5.innerHTML = "ao5: " + averageOf(5)
-      }
-    })
-    var b = 0
-    pen.addEventListener("click", () => {
-      b++
-      if (b % 2 == 1) {
-        DNF.style.visibility = "visible"
-        plus2.style.visibility = "visible"
-      } else {
-        DNF.style.visibility = "hidden"
-        plus2.style.visibility = "hidden"
-      }
-    })
-    mo5.innerHTML = "mo5: " + meanOf(5)
-    ao5.innerHTML = "ao5: " + averageOf(5)
-    pen.disabled = false
-    meanOfFiveButton.disabled = false
-    averageOfFiveButton.disabled = false
-    font.disabled = false
-    scramble()
-    statShow()
-    // === === === === === === === === === ===
-    if (mediaQuery1.matches) {
-      timer.style.position = "none"
-      timer.style.gridColumn = "1/ span 4"
-      timer.style.gridRow = "4/ span 1"
-      timer.style.textAlign = "center"
-    } else {
-      timer.style.position = "none"
-      timer.style.gridColumn = "3/ span 2"
-      timer.style.gridRow = "3/ span 1"
-      timer.style.textAlign = "left"
-    }
-    ao5.style.display = "inline-block"
-    mo5.style.display = "inline-block"
+  if (e.keyCode == 32) {
+    whenKeyPress()
   }
 }
 document.body.onkeydown = function (e) {
@@ -243,46 +105,13 @@ document.body.onkeydown = function (e) {
   meanOfFiveButton.disabled = true
   averageOfFiveButton.disabled = true
   font.disabled = true
-  if (e.keyCode == 32 && window.reset == true) {
-    // when key space bar is hold and timer isn't start
-    DNF.style.visibility = "hidden"
-    plus2.style.visibility = "hidden"
-    second.style.color = "rgb(153, 255, 102)"
-    millisecond.style.color = "rgb(153, 255, 102)"
-    minutes.style.color = "rgb(153, 255, 102)"
-    document.getElementById("semicolon2").style.display = "inline-block"
-    milliseconds.style.display = "inline-block"
-    millisecond.innerHTML = "00"
-    second.innerHTML = "00"
-    minutes.innerHTML = "00"
-    document.getElementById("semicolon1").style.color = "rgb(153, 255, 102)"
-    document.getElementById("semicolon2").style.color = "rgb(153, 255, 102)"
-    document.getElementById("go").style.visibility = "visible"
-
-    document.body.style.visibility = "hidden"
-    ao5.style.display = "none"
-    mo5.style.display = "none"
-    timer.style.visibility = "visible"
-    timer.style.gridColumn = "2/ span 2"
-    timer.style.gridRow = "3/ span 2"
-    timer.style.textAlign = "center"
+  if (e.keyCode == 32) {
+    whenKeyHold()
   }
 }
 
 timer.ontouchend = () => {
-  a++
-  if (a % 2 == 1) {
-    window.reset = false
-    plus2.style.visibility = "hidden"
-    DNF.style.visibility = "hidden"
-    myFunc = setInterval(setTime, 10)
-    totalSecond = 0
-    window.run = true
-  } else if (a % 2 == 0) {
-    window.reset = true
-    totalSecond = 0
-    window.penAvailable = true
-  }
+  whenKeyUp()
 }
 
 timer.ontouchstart = () => {
@@ -291,166 +120,8 @@ timer.ontouchstart = () => {
   meanOfFiveButton.disabled = true
   averageOfFiveButton.disabled = true
   font.disabled = true
-  if (window.reset == true) {
-    // when key space bar is hold and timer isn't start
-    DNF.style.visibility = "hidden"
-    plus2.style.visibility = "hidden"
-    second.style.color = "rgb(153, 255, 102)"
-    millisecond.style.color = "rgb(153, 255, 102)"
-    minutes.style.color = "rgb(153, 255, 102)"
-    document.getElementById("semicolon2").style.display = "inline-block"
-    milliseconds.style.display = "inline-block"
-    millisecond.innerHTML = "00"
-    second.innerHTML = "00"
-    minutes.innerHTML = "00"
-    document.getElementById("semicolon1").style.color = "rgb(153, 255, 102)"
-    document.getElementById("semicolon2").style.color = "rgb(153, 255, 102)"
-    document.getElementById("go").style.visibility = "visible"
-
-    document.body.style.visibility = "hidden"
-    ao5.style.display = "none"
-    mo5.style.display = "none"
-    timer.style.visibility = "visible"
-    timer.style.gridColumn = "2/ span 2"
-    timer.style.gridRow = "3/ span 2"
-    timer.style.textAlign = "center"
-  }
-  if (window.reset == false && window.run == true) {
-    document.body.style.visibility = "visible"
-    clearInterval(myFunc)
-    timeOfSolve =
-      parseInt(totalSecond / 6000) * 60 +
-      (parseInt(totalSecond / 100) % 60) +
-      (totalSecond % 100) / 100
-    solves.unshift(timeOfSolve)
-    window.run = false
-
-    function meanOf(num) {
-      if (solves.length >= num) {
-        var sum = 0
-        var solvesMean = solves.slice(0, num)
-        for (i of solvesMean) {
-          if (i == "DNF") {
-            return "DNF"
-          }
-        }
-        sum = solvesMean.reduce((total, current) => total + current)
-        var ans = (sum / num).toFixed(2)
-        if (ans < 60) {
-          return ans
-        } else if (ans < 70) {
-          return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
-        } else {
-          return Math.floor(ans / 60) + ":" + (ans % 60).toFixed(2)
-        }
-      } else {
-        return ""
-      }
-    }
-
-    function averageOf(num) {
-      if (solves.length >= num) {
-        var sum = 0
-        var firstNum = solves.slice(0, num)
-        solvesAvg = firstNum.filter((value) => value !== "DNF")
-        if (solvesAvg.length == 5) {
-          solvesAvg.sort(function (a, b) {
-            return a - b
-          })
-          solvesAvg.pop()
-          solvesAvg.shift()
-          var sum = solvesAvg.reduce((a, b) => a + b)
-          var ans = (sum / (num - 2)).toFixed(2)
-          if (ans < 60) {
-            return ans
-          } else if (ans < 70) {
-            return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
-          } else {
-            return Math.floor(ans / 60) + ":" + (ans % 60).toFixed(2)
-          }
-        } else if (solvesAvg.length == 4) {
-          solvesAvg.sort(function (a, b) {
-            return a - b
-          })
-          solvesAvg.splice(0, 1)
-          var sum = solvesAvg.reduce((a, b) => a + b)
-          var ans = (sum / (num - 2)).toFixed(2)
-          if (ans < 60) {
-            return ans
-          } else if (ans < 70) {
-            return Math.floor(ans / 60) + ":0" + (ans % 60).toFixed(2)
-          } else {
-            return Math.floor(ans / 60) + ":" + (ans % 60).toFixed(2)
-          }
-        } else {
-          return "DNF"
-        }
-      } else {
-        return ""
-      }
-    }
-    plus2.addEventListener("click", function () {
-      if (window.penAvailable) {
-        window.penAvailable = false
-        solves[0] = timeOfSolve += 2.0
-        if (Math.floor(timeOfSolve) < 10) {
-          seconds.innerHTML = "0" + Math.floor(timeOfSolve)
-        } else {
-          seconds.innerHTML = Math.floor(timeOfSolve)
-        }
-        mo5.innerHTML = "mo5: " + meanOf(5)
-        ao5.innerHTML = "ao5: " + averageOf(5)
-      }
-    })
-    DNF.addEventListener("click", function () {
-      if (window.penAvailable) {
-        window.penAvailable = false
-        solves[0] = "DNF"
-        millisecond.style.display = "none"
-        second.style.display = "none"
-        minutes.style.display = "inline-block"
-        minutes.innerHTML = "DNF"
-        document.getElementById("semicolon1").style.display = "none"
-        document.getElementById("semicolon2").style.display = "none"
-        statShow()
-        mo5.innerHTML = "mo5: " + meanOf(5)
-        ao5.innerHTML = "ao5: " + averageOf(5)
-      }
-    })
-    var b = 0
-    pen.addEventListener("click", () => {
-      b++
-      if (b % 2 == 1) {
-        DNF.style.visibility = "visible"
-        plus2.style.visibility = "visible"
-      } else {
-        DNF.style.visibility = "hidden"
-        plus2.style.visibility = "hidden"
-      }
-    })
-    mo5.innerHTML = "mo5: " + meanOf(5)
-    ao5.innerHTML = "ao5: " + averageOf(5)
-    pen.disabled = false
-    meanOfFiveButton.disabled = false
-    averageOfFiveButton.disabled = false
-    font.disabled = false
-    statShow()
-    scramble()
-    // === === === === === === === === === ===
-    if (mediaQuery1.matches) {
-      timer.style.position = "none"
-      timer.style.gridColumn = "1/ span 4"
-      timer.style.gridRow = "4/ span 1"
-      timer.style.textAlign = "center"
-    } else {
-      timer.style.position = "none"
-      timer.style.gridColumn = "3/ span 2"
-      timer.style.gridRow = "3/ span 1"
-      timer.style.textAlign = "left"
-    }
-    ao5.style.display = "inline-block"
-    mo5.style.display = "inline-block"
-  }
+  whenKeyHold()
+  whenKeyPress()
 }
 
 function ao5Hide() {
