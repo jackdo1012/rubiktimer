@@ -22,7 +22,7 @@ body {
   align-items: center;
   text-align: center;
   padding: auto 5%;
-  height: 10vh;
+  height: max(fit-content, 10vh);
   font-size: 1.8rem;
   background-color: gray;
   border-radius: 10px;

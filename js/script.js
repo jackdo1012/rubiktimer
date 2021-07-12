@@ -17,7 +17,15 @@ var reset = true
 var solves = []
 var scrambles = []
 var run = false
-
+;(() => {
+  scramble()
+  pen.disabled = true
+  meanOfFiveButton.disabled = false
+  averageOfFiveButton.disabled = false
+  font.disabled = false
+  ao5Button.addEventListener("click", ao5Hide)
+  mo5Button.addEventListener("click", mo5Hide)
+})()
 function setTime() {
   import("./setTime.js").then((response) => {
     return response.setTime()
@@ -51,15 +59,6 @@ var statShow = () => {
     document.querySelector("#worst").innerHTML = "Worst: " + Math.max(...solves)
   }
 }
-;(() => {
-  scramble()
-  pen.disabled = true
-  meanOfFiveButton.disabled = false
-  averageOfFiveButton.disabled = false
-  font.disabled = false
-  ao5Button.addEventListener("click", ao5Hide)
-  mo5Button.addEventListener("click", mo5Hide)
-})()
 
 font.addEventListener(
   "change",
