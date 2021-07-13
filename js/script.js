@@ -53,7 +53,7 @@ var statShow = () => {
   if (solves.includes("DNF")) {
     document.querySelector("#worst").innerHTML = "Worst: DNF"
     document.querySelector("#best").innerHTML =
-      "Best: " + Math.max(...solves.filter((value) => value != "DNF"))
+      "Best: " + Math.min(...solves.filter((value) => value != "DNF"))
   } else {
     document.querySelector("#best").innerHTML = "Best: " + Math.min(...solves)
     document.querySelector("#worst").innerHTML = "Worst: " + Math.max(...solves)
